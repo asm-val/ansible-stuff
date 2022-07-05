@@ -1,0 +1,26 @@
+---
+- hosts: artest
+  remote_user: root 
+
+  vars_prompt: 
+   -  name: itemsrc
+      prompt: please provide item to be copied
+      private: no
+      default: "/etc/hostname"
+   -  name: itemdest
+      prompt: please provide the location which you want to copy the item to
+      default: "~/copiedfile"
+      private: no
+
+
+
+  tasks:
+    - name: copy file
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+
+      with_items:
+        - src: "{{ itemsrc}}"
+          dest: "{{ itemdest }}"
+

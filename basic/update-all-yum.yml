@@ -1,0 +1,10 @@
+---
+- hosts: artest 
+  remote_user: root
+
+  tasks:
+    -  name: Update zabbix
+       yum:
+         name=*
+         state=latest
+
